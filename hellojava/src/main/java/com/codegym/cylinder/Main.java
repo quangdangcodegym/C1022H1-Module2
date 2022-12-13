@@ -2,6 +2,12 @@ package com.codegym.cylinder;
 
 public class Main {
     public static void main(String[] args) {
+
+
+        Object a = new Cylinder(3.0, 5.0, "blue");
+
+        System.out.println(a.toString());
+
         /**
         // Khoi tao khong tham so
         Circle c = new Circle();
@@ -21,7 +27,6 @@ public class Main {
          */
 
 
-        int a = 5;
 
 //        Move b = new Move();
 
