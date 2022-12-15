@@ -1,9 +1,11 @@
 package com.codegym.triangle;
 
-public class Shape {
+public abstract class Shape {
     protected String color;
     protected boolean filled;
 
+    // Trong lớp trừu tượng vẫn có thể có contructor
+    // Trong lớp trừu tượng vẫn có phương thuc va thuộc tính bình thường
     public Shape() {
 
     }
@@ -27,7 +29,7 @@ public class Shape {
     public void setFilled(boolean filled) {
         this.filled = filled;
     }
-    public double getArea() {
-        return 0;
-    }
+    public abstract double getArea();
+    // Phương thức trừu tượng: sẽ ko có phần thân
+    // Nếu trong 1 lớp có 1 phương thức trưu tượng thì lớp đó là lớp trừu tuợng
 }
