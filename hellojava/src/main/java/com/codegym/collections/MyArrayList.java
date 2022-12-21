@@ -15,6 +15,8 @@ public class MyArrayList<T> {
     }
 
     public static void main(String[] args) {
+        MyArrayList<Integer> array = new MyArrayList<>();
+        array.addT(2);
 
         List<Integer> arr = new ArrayList<>();
         arr.add(1);
@@ -42,6 +44,18 @@ public class MyArrayList<T> {
             ensureCapa();
         }
         elements[size++] = e;
+    }
+
+    public T get(int index) {
+        return (T) elements[index];
+    }
+
+    public void addT(T e) {
+        if (size == items.length) {
+            int newSize = items.length * 2;
+            items = Arrays.copyOf(items, newSize);
+        }
+        items[size++] = e;
     }
     public void add(T item, int index) {
         if(size > elements.length){
