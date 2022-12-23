@@ -1,8 +1,10 @@
 package com.codegym.model;
 
+import com.codegym.repository.IModel;
+
 import java.util.Date;
 
-public class Customer {
+public class Customer implements IModel<Customer> {
     private long id;
     private String name;
     private int age;
@@ -32,6 +34,14 @@ public class Customer {
 
     public long getId() {
         return id;
+    }
+
+    @Override
+    public void update(Customer objNew) {
+        this.name = objNew.getName();
+        this.age = objNew.getAge();
+        this.address = objNew.getAddress();
+        this.create = objNew.getCreate();
     }
 
     public void setId(long id) {

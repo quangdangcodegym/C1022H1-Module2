@@ -1,6 +1,7 @@
 package com.codegym;
 
 import com.codegym.view.CustomerView;
+import com.codegym.view.OrderView;
 import com.codegym.view.ProductView;
 
 public class Main {
@@ -9,7 +10,10 @@ public class Main {
 //        customerList.launcher();
 
 
-        ProductView myStore = new ProductView();
-        myStore.laucher();
+//        ProductView myStore = new ProductView();
+//        myStore.laucher();
+
+        OrderView orderView = new OrderView();
+        orderView.laucher();
     }
 }
