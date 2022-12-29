@@ -1,12 +1,15 @@
 package com.codegym.filereadwrite;
 
-public class Customer {
+public class Customer implements IModel<Customer>{
     private long id;
     private String name;
 
     public Customer(long id, String name) {
         this.id = id;
         this.name = name;
+    }
+    public Customer() {
+
     }
 
     public long getId() {
@@ -27,9 +30,15 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format("%s,%s", this.id, this.name);
+    }
+
+    @Override
+    public Customer parseData(String line) {
+        // 1,Quang Dang
+        String[] items = line.split(",");
+        long id = Long.parseLong(items[0]);
+        Customer customer = new Customer(id, items[1]);
+        return customer;
     }
 }

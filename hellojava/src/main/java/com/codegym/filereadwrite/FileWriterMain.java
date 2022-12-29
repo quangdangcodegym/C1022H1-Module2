@@ -2,10 +2,14 @@ package com.codegym.filereadwrite;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FileWriterMain {
     public static void main(String[] args)  {
+
+        Date date = new Date();
+        System.out.println(date);
         // PrintWriter: 1 luồng kí tự để ghi file
         List<Product> products = new ArrayList<>();
         products.add(new Product(1, "Iphone 11", 23000.0));
@@ -26,9 +30,7 @@ public class FileWriterMain {
     public static <T> void writeDate(List<T> list, String filePath) {
         try {
             File file = new File(filePath);
-
             PrintWriter printWriter = new PrintWriter(file);
-
             for (int i = 0; i < list.size(); i++) {
                 printWriter.write(list.get(i).toString());
                 if (i != list.size() - 1) {
@@ -43,8 +45,6 @@ public class FileWriterMain {
             throw new RuntimeException(e);
         }
     }
-
-
 
 
     public void docLevel1DungRead() {

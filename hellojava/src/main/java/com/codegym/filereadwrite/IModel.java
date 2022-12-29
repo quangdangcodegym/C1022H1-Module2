@@ -1,2 +1,5 @@
-package com.codegym.filereadwrite;public class IModel {
+package com.codegym.filereadwrite;
+
+public interface IModel<T> {
+    T parseData(String line);
 }

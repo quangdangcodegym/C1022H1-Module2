@@ -1,2 +1,2 @@
-Customer{id=1, name='Quang Dang'}
-Customer{id=2, name='Thanh Nhan'}
+1,Quang Dang
+2,Thanh Nhan

@@ -2,22 +2,23 @@ package com.codegym.filereadwrite;
 
 import java.util.Objects;
 
-public class Product {
+public class Product implements IModel<Product> {
     protected String name;
-    private int id;
+    private long id;
     private double price;
 
-    public Product(int id,String name,  double price) {
+
+    public Product(long id,String name,  double price) {
         this.name = name;
         this.id = id;
         this.price = price;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -60,5 +61,16 @@ public class Product {
     public String toString() {
         //1,Iphone 11,23000
         return String.format("%s,%s,%s", this.id, this.name, this.price);
+    }
+
+    @Override
+    public Product parseData(String line) {
+        String [] items = line.split(",");
+        long idProduct = Long.parseLong(items[0]);
+        String name = items[1];
+        double price = Double.parseDouble(items[2]);
+        Product p = new Product(idProduct, name, price);
+
+        return p;
     }
 }
