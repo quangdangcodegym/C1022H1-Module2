@@ -1,6 +1,7 @@
 package com.codegym.model;
 
 import com.codegym.repository.IModel;
+import com.codegym.utils.DateUtils;
 
 import java.util.Date;
 
@@ -26,6 +27,20 @@ public class Product implements IModel<Product> {
         this.price = objNew.getPrice();
         this.quantity = objNew.getQuantity();
         this.name = objNew.getName();
+    }
+
+    @Override
+    public Product parseData(String line) {
+        //1,Iphone 11,23000,5,2022-12-20
+        String[] items = line.split(",");
+        long idProduct = Long.parseLong(items[0]);
+        double price = Double.parseDouble(items[2]);
+        Date createAt = DateUtils.parseDate(items[4]);
+        int quantity = Integer.parseInt(items[3]);
+
+        //(long id, String name, double price, int quantity, Date createAt
+        Product p = new Product(idProduct, items[1], price, quantity, createAt);
+        return p;
     }
 
     public void setId(long id) {
@@ -81,5 +96,12 @@ public class Product implements IModel<Product> {
 
     public String toViewer() {
         return String.format("%-5s|%-10s|%-10s|%-10s|%-10s\n", this.getId(), this.getName(), this.getPrice(), this.getQuantity(), this.getCreateAt());
+    }
+
+    @Override
+    public String toString() {
+        //1,Iphone 11,23000,5,2022-12-20 08:30:45
+        String strDate = DateUtils.convertDateToString(this.createAt);
+        return String.format("%s,%s,%s,%s,%s", this.id,this.name, this.price,this.quantity,strDate);
     }
 }

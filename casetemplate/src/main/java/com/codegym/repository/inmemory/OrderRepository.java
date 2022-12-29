@@ -1,4 +1,4 @@
-package com.codegym.repository;
+package com.codegym.repository.inmemory;
 
 import com.codegym.model.EStatusOrder;
 import com.codegym.model.Order;

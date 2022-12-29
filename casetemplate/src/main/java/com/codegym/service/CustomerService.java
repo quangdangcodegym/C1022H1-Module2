@@ -1,13 +1,8 @@
 package com.codegym.service;
 
 import com.codegym.model.Customer;
-import com.codegym.model.EGender;
-import com.codegym.model.Product;
-import com.codegym.repository.CustomerRepository;
-import com.codegym.repository.ProductRepository;
+import com.codegym.repository.file.CustomerRepository;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CustomerService {

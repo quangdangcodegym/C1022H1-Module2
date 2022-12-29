@@ -25,7 +25,7 @@ public class OrderView {
             System.out.println("Xem danh sách order:                1");
             System.out.println("Thêm order:                         2");
             System.out.println("Xem chi tiết order:                 3");
-            System.out.println("Cập nhật trạng thái đơn hàn:        4");
+            System.out.println("Cập nhật trạng thái đơn hàng:        4");
 
             int actionMenuProduct = Integer.parseInt(scanner.nextLine());
             switch (actionMenuProduct) {
@@ -64,6 +64,7 @@ public class OrderView {
     }
 
     private void createOrderView() {
+
     }
 
     private void showOrdersView() {

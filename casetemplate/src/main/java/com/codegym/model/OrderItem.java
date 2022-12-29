@@ -29,6 +29,11 @@ public class OrderItem implements IModel<OrderItem> {
         this.idOrder = objNew.getIdOrder();
     }
 
+    @Override
+    public OrderItem parseData(String line) {
+        return null;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

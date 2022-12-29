@@ -1,6 +1,7 @@
 package com.codegym.model;
 
 import com.codegym.repository.IModel;
+import com.codegym.utils.DateUtils;
 
 import java.util.Date;
 
@@ -42,6 +43,20 @@ public class Customer implements IModel<Customer> {
         this.age = objNew.getAge();
         this.address = objNew.getAddress();
         this.create = objNew.getCreate();
+    }
+
+    @Override
+    public Customer parseData(String line) {
+        String[] items = line.split(",");
+        //1,Quang Dang,23,28 Nguyen Tri Phuong,2022-12-20 08:30:45,MAlE
+        long idCustomer = Long.parseLong(items[0]);
+        int age = Integer.parseInt(items[2]);
+        Date createAt = DateUtils.parseDate(items[4]);
+        EGender eGender = EGender.getEGenderByName(items[5]);
+
+        //long id, String name, int age, String address, Date create, EGender eGender) {
+        Customer customer = new Customer(idCustomer, items[1], age, items[3], createAt, eGender);
+        return customer;
     }
 
     public void setId(long id) {
@@ -89,5 +104,13 @@ public class Customer implements IModel<Customer> {
         this.address = customer.getAddress();
         this.age  = customer.getAge();
         this.create = customer.getCreate();
+    }
+
+
+    @Override
+    public String toString() {
+        //1,Quang Dang,23,28 Nguyen Tri Phuong,2022-12-20 08:30:45,MAlE
+        String strDate = DateUtils.convertDateToString(this.create);
+        return String.format("%s,%s,%s,%s,%s,%s", this.id,this.name, this.age,this.address,strDate,gender);
     }
 }

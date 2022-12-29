@@ -1,4 +1,4 @@
-package com.codegym.repository;
+package com.codegym.repository.inmemory;
 
 import com.codegym.model.Customer;
 import com.codegym.model.EGender;

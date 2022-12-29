@@ -36,4 +36,12 @@ public enum EGender {
         }
         return null;
     }
+    public static EGender getEGenderByName(String name) {
+        for (EGender e : values()) {
+            if (e.equals(name)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

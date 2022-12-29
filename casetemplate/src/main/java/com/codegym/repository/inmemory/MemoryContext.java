@@ -1,4 +1,6 @@
-package com.codegym.repository;
+package com.codegym.repository.inmemory;
+
+import com.codegym.repository.IModel;
 
 import java.util.List;
 

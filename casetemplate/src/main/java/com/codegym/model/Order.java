@@ -27,6 +27,11 @@ public class Order implements IModel<Order> {
         this.eStatusOrder = objNew.geteStatusOrder();
     }
 
+    @Override
+    public Order parseData(String line) {
+        return null;
+    }
+
     public EStatusOrder geteStatusOrder() {
         return eStatusOrder;
     }
