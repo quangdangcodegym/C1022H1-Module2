@@ -30,7 +30,6 @@ public class ProductView {
             System.out.println("Sắp xếp theo tên:           6");
             System.out.println("Tìm kiếm theo tên:          7");
             System.out.println("Tìm kiếm theo giá:          8");
-            System.out.println("Xem danh sách + Pagging:    9");
             int actionMenuProduct = Integer.parseInt(scanner.nextLine());
             switch (actionMenuProduct) {
                 case 1:
@@ -54,31 +53,12 @@ public class ProductView {
                 case 7:
                     searchProductByNameView();
                     break;
-                case 9:
-                    showProductsPaggingView();
-                    break;
             }
             checkActionMenuProduct = checkActionMenuProductContinue();
         }while (checkActionMenuProduct);
 
     }
 
-    private void showProductsPaggingView() {
-        int numberOfPage = 3;
-        List<Product> products = productService.getAllProducts();
-        int pageSize = (int) Math.ceil(((double) products.size())/numberOfPage);
-        System.out.println("Số trang: " + pageSize);
-        for (int i = 1; i <= pageSize; i++) {
-            System.out.println("Page: " + i);
-            int fromIndex = (i-1)*numberOfPage;
-            int toIndex = fromIndex + numberOfPage;
-            if (i == pageSize) {
-                toIndex = products.size();
-            }
-            showProductsView(products.subList( fromIndex, toIndex));
-            scanner.nextLine();
-        }
-    }
     private void searchProductByNameView() {
         System.out.println("Nhập tên bạn muốn tìm kiếm");
         String nameSearch = scanner.nextLine();
