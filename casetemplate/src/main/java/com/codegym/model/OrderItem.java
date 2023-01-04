@@ -3,6 +3,7 @@ package com.codegym.model;
 import com.codegym.repository.IModel;
 
 public class OrderItem implements IModel<OrderItem> {
+
     private long id;
     private long idOrder;
     private long idProduct;
@@ -31,7 +32,19 @@ public class OrderItem implements IModel<OrderItem> {
 
     @Override
     public OrderItem parseData(String line) {
-        return null;
+        //1,1,1672302730,5
+        String[] items = line.split(",");
+        long idOrderItem = Long.parseLong(items[0]);
+        long idOrder = Long.parseLong(items[1]);
+        long idProduct = Long.parseLong(items[2]);
+        int amount = Integer.parseInt(items[3]);
+
+        OrderItem orderItem = new OrderItem();
+        orderItem.setAmount(amount);
+        orderItem.setId(idOrderItem);
+        orderItem.setIdProduct(idProduct);
+        orderItem.setIdOrder(idOrder);
+        return orderItem;
     }
 
     public void setId(long id) {

@@ -1,7 +1,7 @@
 package com.codegym.model;
 
 public enum EGender {
-    MAlE("Nam", 1),
+    MALE("Nam", 1),
     FEMALE("Nữ", 2),
     ORTHER("Orther", 3);
 
@@ -38,7 +38,7 @@ public enum EGender {
     }
     public static EGender getEGenderByName(String name) {
         for (EGender e : values()) {
-            if (e.equals(name)) {
+            if (e.toString().equals(name)) {
                 return e;
             }
         }

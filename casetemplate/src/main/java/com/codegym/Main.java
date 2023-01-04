@@ -10,10 +10,10 @@ public class Main {
 //        customerList.launcher();
 
 
-        ProductView myStore = new ProductView();
-        myStore.laucher();
+//        ProductView myStore = new ProductView();
+//        myStore.laucher();
 
-//        OrderView orderView = new OrderView();
-//        orderView.laucher();
+        OrderView orderView = new OrderView();
+        orderView.laucher();
     }
 }

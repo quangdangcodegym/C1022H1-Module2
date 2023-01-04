@@ -3,6 +3,7 @@ package com.codegym.view;
 import com.codegym.model.Customer;
 import com.codegym.model.EGender;
 import com.codegym.service.CustomerService;
+import com.codegym.utils.ValidateUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -90,8 +91,9 @@ public class CustomerView {
         String name = scn.nextLine();
         System.out.println("Enter customer's age");
         int age = Integer.parseInt(scn.nextLine());
-        System.out.println("Enter customer's address");
-        String address = scn.nextLine();
+
+        String address = inputAdress();
+
 
         for (EGender eGender : EGender.values() ) {
             System.out.printf("%s Nhập: %s", eGender.getValue(), eGender.getId());
@@ -122,6 +124,23 @@ public class CustomerView {
             default:
                 break;
         }
+    }
+
+    private String inputAdress() {
+        boolean checkAddressValid = false;
+        String address = "";
+        do{
+            System.out.println("Enter customer's address");
+            address = scn.nextLine();
+
+            checkAddressValid = ValidateUtils.isAddressValid(address);
+            if (checkAddressValid == false) {
+                System.out.println("Địa chỉ không đúng");
+                System.out.println("Địa chỉ phải từ 8-20 kí tự và không được bắt đầu bằng kí tự đặc biệt ");
+            }
+        }while (!checkAddressValid);
+
+        return address;
     }
 
     public void editCustomer(Customer customer) {

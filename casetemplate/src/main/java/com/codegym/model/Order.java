@@ -1,6 +1,7 @@
 package com.codegym.model;
 
 import com.codegym.repository.IModel;
+import com.codegym.utils.DateUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,20 @@ public class Order implements IModel<Order> {
 
     @Override
     public Order parseData(String line) {
-        return null;
+        // line: 1,Quang Dang,100000,2022-12-20 08:30:45,NEW
+        String[] items = line.split(",");
+        Order order = new Order();
+        long idOrder = Long.parseLong(items[0]);
+        double total = Double.parseDouble(items[2]);
+        Date createAt = DateUtils.parseDate(items[3]);
+        EStatusOrder statusOrder = EStatusOrder.getEStatusOrderByName(items[4]);
+
+        order.setId(idOrder);
+        order.setNameCustomer(items[1]);
+        order.setTotal(total);
+        order.setCreateAt(createAt);
+        order.seteStatusOrder(statusOrder);
+        return order;
     }
 
     public EStatusOrder geteStatusOrder() {
@@ -76,6 +90,9 @@ public class Order implements IModel<Order> {
         this.orderItems = orderItems;
     }
 
+    public Order() {
+
+    }
     public Order(long id, String nameCustomer, double total, Date createAt, List<OrderItem> orderItems) {
         this.id = id;
         this.nameCustomer = nameCustomer;

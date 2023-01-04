@@ -174,6 +174,7 @@ public class ProductView {
     private void createProductView() {
         System.out.println("Nhập tên: ");
         String name = scanner.nextLine();
+
         System.out.println("Nhập giá: ");
         double price = Double.parseDouble(scanner.nextLine());
         System.out.println("Nhập số lượng");
