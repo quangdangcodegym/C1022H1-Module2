@@ -10,6 +10,7 @@ public class BinarayFile {
                 // Creates a FileOutputStream
                 FileOutputStream file = new FileOutputStream("./data/flush.txt");
 
+                ObjectInputStream objectInputStream;
                 // Creates a BufferedOutputStream
                 BufferedOutputStream buffer = new BufferedOutputStream(file);
 

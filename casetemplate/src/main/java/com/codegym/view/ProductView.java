@@ -1,7 +1,7 @@
 package com.codegym.view;
 
-import com.codegym.CompartorByName;
-import com.codegym.CompartorByPrice;
+import com.codegym.comparator.CompartorByName;
+import com.codegym.comparator.CompartorByPrice;
 import com.codegym.model.Product;
 import com.codegym.service.ProductService;
 

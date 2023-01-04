@@ -1,4 +1,4 @@
-package com.codegym;
+package com.codegym.comparator;
 
 import com.codegym.model.Product;
 
