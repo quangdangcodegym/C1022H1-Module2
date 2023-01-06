@@ -1,8 +1,11 @@
 package com.codegym.service;
 
 import com.codegym.model.Product;
+import com.codegym.repository.ISearch;
 import com.codegym.repository.file.ProductRepository;
+import com.codegym.utils.DateUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
@@ -16,14 +19,19 @@ public class ProductService {
 
 
     public List<Product> searchProductsByName(String name) {
-//        List<Product> results = new ArrayList<>();
-//        for (Product p : products) {
-//            if (p.getName().toUpperCase().contains(name.toUpperCase())) {
-//                results.add(p);
-//            }
-//        }
-//        return results;
-        return null;
+        ISearch<Product> iSearch = new ISearch<Product>() {
+            @Override
+            public boolean searchByName(Product obj, String name) {
+                String strDate = DateUtils.convertDateToString(obj.getCreateAt());
+                boolean checkSearch = obj.getName().toUpperCase().contains(name.toUpperCase())
+                        || strDate.contains(name);
+                if(checkSearch){
+                    return true;
+                }
+                return false;
+            }
+        };
+        return  productRepository.searchByKeyWord(name, iSearch);
     }
     public void deleteProductById(long idProduct) {
         productRepository.deleteById(idProduct);

@@ -2,6 +2,7 @@ package com.codegym.view;
 
 import com.codegym.comparator.CompartorByName;
 import com.codegym.comparator.CompartorByPrice;
+import com.codegym.model.ERole;
 import com.codegym.model.Product;
 import com.codegym.service.ProductService;
 
@@ -10,15 +11,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProductView {
+public class ProductView extends GenericView{
 
-    private Scanner scanner = new Scanner(System.in);
     private ProductService productService;
     public ProductView() {
         productService = new ProductService();
     }
 
-    public void laucher() {
+    public void launcher() {
         boolean checkActionMenuProduct = false;
         do{
             System.out.println("Menu sản phẩm");

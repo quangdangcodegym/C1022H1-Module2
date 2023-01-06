@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerView {
+public class CustomerView extends GenericView {
+
     private CustomerService customerService;
-    Scanner scn = new Scanner(System.in);
 
     public CustomerView() {
         customerService = new CustomerService();
@@ -31,7 +31,7 @@ public class CustomerView {
         boolean checkAction = false;
         do {
             renderMenu();
-            int actionMenuProduct = Integer.parseInt(scn.nextLine());
+            int actionMenuProduct = Integer.parseInt(scanner.nextLine());
             switch (actionMenuProduct) {
                 case 1:
                     showCustomerList(customerService.getAllCustomers());
@@ -42,7 +42,7 @@ public class CustomerView {
                 case 3:
                     System.out.println("1. Edit by id?");
                     System.out.println("2. Edit by name?");
-                    int edit = Integer.parseInt(scn.nextLine());
+                    int edit = Integer.parseInt(scanner.nextLine());
                     if (edit == 1) {
                         updateCustomerById();
                     }
@@ -63,14 +63,14 @@ public class CustomerView {
 
     public void deleteCustomer() {
         System.out.println("Enter ID's customer you want to delete");
-        long id = Long.parseLong(scn.nextLine());
+        long id = Long.parseLong(scanner.nextLine());
         customerService.deleteCustomerById(id);
         showCustomerList(customerService.getAllCustomers());
     }
 
     public void updateCustomerByName() {
         System.out.println("Name's customer you want to edit");
-        String name = scn.nextLine().trim().toLowerCase();
+        String name = scanner.nextLine().trim().toLowerCase();
 
         Customer customer = customerService.findCustomerByName(name);
         editCustomer(customer);
@@ -79,7 +79,7 @@ public class CustomerView {
 
     public void updateCustomerById() {
         System.out.println("ID's customer you want to edit");
-        long idCustomer = Long.parseLong(scn.nextLine());
+        long idCustomer = Long.parseLong(scanner.nextLine());
         Customer customer = customerService.findCustomerById(idCustomer);
         editCustomer(customer);
         customerService.updateCustomerById(idCustomer, customer);
@@ -88,9 +88,9 @@ public class CustomerView {
     public void addNewCustomer() {
         long id = System.currentTimeMillis() % 1000;
         System.out.println("Enter customer's name");
-        String name = scn.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Enter customer's age");
-        int age = Integer.parseInt(scn.nextLine());
+        int age = Integer.parseInt(scanner.nextLine());
 
         String address = inputAdress();
 
@@ -99,7 +99,7 @@ public class CustomerView {
             System.out.printf("%s Nhập: %s", eGender.getValue(), eGender.getId());
         }
         System.out.println("Enter customer's gender");
-        int genderID = Integer.parseInt(scn.nextLine());
+        int genderID = Integer.parseInt(scanner.nextLine());
         EGender gender = EGender.toEGender(genderID);
 
         Date createDate = new Date();
@@ -107,7 +107,7 @@ public class CustomerView {
         System.out.println("Please check new customer's information");
         showCustomer(newCustomer);
         System.out.println("Do you want to save? Y/N");
-        String choice = scn.nextLine();
+        String choice = scanner.nextLine();
         choice = choice.trim().toUpperCase();
         switch (choice) {
             case "Y":
@@ -116,7 +116,7 @@ public class CustomerView {
                 break;
             case "N":
                 System.out.println("Edit(1) or cancel(2)? ");
-                int edit = Integer.parseInt(scn.nextLine());
+                int edit = Integer.parseInt(scanner.nextLine());
                 if (edit == 1) {
                     editCustomer(newCustomer);
                     customerService.addCustomer(newCustomer);
@@ -131,7 +131,7 @@ public class CustomerView {
         String address = "";
         do{
             System.out.println("Enter customer's address");
-            address = scn.nextLine();
+            address = scanner.nextLine();
 
             checkAddressValid = ValidateUtils.isAddressValid(address);
             if (checkAddressValid == false) {
@@ -149,23 +149,23 @@ public class CustomerView {
         System.out.println("2. Customer age");
         System.out.println("3. Customer address");
         System.out.println("Please choose 1");
-        int choice = Integer.parseInt(scn.nextLine());
+        int choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1:
                 System.out.println("Enter name");
-                customer.setName(scn.nextLine());
+                customer.setName(scanner.nextLine());
                 showCustomer(customer);
                 System.out.println("----------Done---------");
                 break;
             case 2:
                 System.out.println("Enter age");
-                customer.setAge(Integer.parseInt(scn.nextLine()));
+                customer.setAge(Integer.parseInt(scanner.nextLine()));
                 showCustomer(customer);
                 System.out.println("----------Done---------");
                 break;
             case 3:
                 System.out.println("Enter address");
-                customer.setAddress(scn.nextLine());
+                customer.setAddress(scanner.nextLine());
                 showCustomer(customer);
                 System.out.println("----------Done---------");
                 break;
@@ -178,7 +178,7 @@ public class CustomerView {
         boolean checkActionContinue = false;
         do {
             System.out.println("Continue? Y/N");
-            String choice = scn.nextLine().trim().toUpperCase();
+            String choice = scanner.nextLine().trim().toUpperCase();
             switch (choice) {
                 case "Y":
                     return true;

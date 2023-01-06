@@ -1,5 +1,6 @@
 package com.codegym.view;
 
+import com.codegym.model.ERole;
 import com.codegym.model.Order;
 import com.codegym.model.OrderItem;
 import com.codegym.model.Product;
@@ -9,39 +10,60 @@ import com.codegym.service.ProductService;
 import java.util.List;
 import java.util.Scanner;
 
-public class OrderView {
+public class OrderView extends GenericView {
     private OrderService orderService;
     private ProductService productService;
-    private Scanner scanner = new Scanner(System.in);
 
     public OrderView() {
         orderService = new OrderService();
         productService = new ProductService();
     }
-    public void laucher() {
-        boolean checkActionMenuOrder = false;
-        do{
-            System.out.println("Menu order");
-            System.out.println("Xem danh sách order:                1");
-            System.out.println("Thêm order:                         2");
-            System.out.println("Xem chi tiết order:                 3");
-            System.out.println("Cập nhật trạng thái đơn hàng:        4");
+    public void launcher() {
+        if (user.getRole() == ERole.ADMIN) {
+            boolean checkActionMenuOrder = false;
+            do{
+                System.out.println("Menu order");
+                System.out.println("Xem danh sách order:                1");
+                System.out.println("Thêm order:                         2");
+                System.out.println("Xem chi tiết order:                 3");
+                System.out.println("Cập nhật trạng thái đơn hàng:        4");
 
-            int actionMenuProduct = Integer.parseInt(scanner.nextLine());
-            switch (actionMenuProduct) {
-                case 1:
-                    showOrdersView();
-                    break;
-                case 2:
-                    createOrderView();
-                    break;
-                case 3:
-                    showDetailOrderView();
-                    break;
+                int actionMenuProduct = Integer.parseInt(scanner.nextLine());
+                switch (actionMenuProduct) {
+                    case 1:
+                        showOrdersView();
+                        break;
+                    case 2:
+                        createOrderView();
+                        break;
+                    case 3:
+                        showDetailOrderView();
+                        break;
 
-            }
-            checkActionMenuOrder = checkActionMenuOrderContinue();
-        }while (checkActionMenuOrder);
+                }
+                checkActionMenuOrder = checkActionMenuOrderContinue();
+            }while (checkActionMenuOrder);
+        }else {
+            boolean checkActionMenuOrder = false;
+            do{
+                System.out.println("Menu order");
+                System.out.println("Xem danh sách order:                1");
+                System.out.println("Xem chi tiết order:                 2");
+
+                int actionMenuProduct = Integer.parseInt(scanner.nextLine());
+                switch (actionMenuProduct) {
+                    case 1:
+                        showOrdersView();
+                        break;
+                    case 2:
+                        showDetailOrderView();
+                        break;
+
+                }
+                checkActionMenuOrder = checkActionMenuOrderContinue();
+            }while (checkActionMenuOrder);
+        }
+
 
     }
 

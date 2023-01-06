@@ -1,7 +1,9 @@
 package com.codegym.repository.file;
 
 import com.codegym.repository.IModel;
+import com.codegym.repository.ISearch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FileContext<T> {
@@ -41,6 +43,16 @@ public abstract class FileContext<T> {
         return fileService.readData(filePath, tClass);
     }
 
+    public List<T> searchByKeyWord(String kw, ISearch<T> iSearch){
+        List<T> results = new ArrayList<>();
+        List<T> list = getAll();
+        for (int i = 0; i < list.size(); i++) {
+            if (iSearch.searchByName(list.get(i), kw)) {
+                results.add(list.get(i));
+            }
+        }
+        return results;
+    }
     public  void deleteById(long id){
         List<T> list = getAll();
         for (int i = 0; i < list.size(); i++) {
